@@ -79,7 +79,7 @@ jobScheduler.cancelAll();
 
 ## doNow(`options`, `remove`)
 Let a job(s) happen right now.
-* `options` - (Object, Optional, Default `{}`) Cancel a job(s), like `reschedule`.
+* `options` - (Object, Optional, Default `{}`) Which job(s) will be done now, like `reschedule`.
 * `remove` - (Boolean, Optional, Default `false`) Whether to remove the job(s) after do it now.
   * `true` - Remove it after do it now.
   * `false` - Keep it after do it now, it will happen again when its scheduled time is coming.
