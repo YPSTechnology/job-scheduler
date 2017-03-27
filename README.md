@@ -28,23 +28,70 @@ Schedule a job, happening in `time`ms from now on.
   * `argArray` - (Array, Optional, Default `undefined`) The argument array of `callback`;
   
 You can also put any other properties in the `options` for searching jobs, described in subsequent APIs.
+```javascript
+jobScheduler.scheduleJob(function(args) {
+  console.log('job args', args);      //job args [ 1, 2, 3 ]
+}, 3000, {loop: true, exclusive: true, argArray: [1, 2, 3]});
+```
 
 ### reschedule(`options`, `time`)
 Reschedule a job(s).
 * `options` - (Object, Optional, Default `{}`) Which job(s) will be rescheduled. Only the job(s) whose `options` is equal to or contains the given `options`, will be rescheduled. Default `options` means rescheduling all jobs.
 * `time` - (Number, Optional, Default `zero`) Reschedule time.
+```javascript
+jobScheduler.scheduleJob(function() {
+  console.log('job happen',);      // job will not happen in 3000ms.
+}, 3000, {jobName: 'MyJob'});
+
+// sleep 1 second
+
+jobScheduler.reschedule({jobName: 'MyJob'}, 5000);  // job will happen in 5000ms from now on.
+```
 
 ### cancelJob(`options`)
 Cancel a job(s).
 * `options` - (Object, Optional, Default `{}`) Which job(s) will be canceled, like `reschedule`.
+```javascript
+jobScheduler.scheduleJob(function() {
+  console.log('job happen',);      // job will not happen.
+}, 3000, {jobName: 'MyJob'});
+
+// sleep 1 second
+
+jobScheduler.cancelJob({jobName: 'MyJob'});
+```
 
 ### cancelAll()
 Cancel all jobs.
+```javascript
+jobScheduler.scheduleJob(function() {
+  console.log('job1 happen',);      // job1 will not happen.
+}, 3000, {jobName: 'MyJob1'});
+
+jobScheduler.scheduleJob(function() {
+  console.log('job2 happen',);      // job2 will not happen.
+}, 3000, {jobName: 'MyJob2'});
+
+// sleep 1 second
+
+jobScheduler.cancelAll();
+```
 
 ## doNow(`options`, `remove`)
 Let a job(s) happen right now.
 * `options` - (Object, Optional, Default `{}`) Cancel a job(s), like `reschedule`.
 * `remove` - (Boolean, Optional, Default `false`) Whether to remove the job(s) after do it now.
+  * `true` - Remove it after do it now.
+  * `false` - Keep it after do it now, it will happen again when its scheduled time is coming.
+```javascript
+jobScheduler.scheduleJob(function() {
+  console.log('job happen',);      // job will happen in 1000ms instead of 3000ms.
+}, 3000, {jobName: 'MyJob'});
+
+// sleep 1 second
+
+jobScheduler.doNow({jobName: 'MyJob'}, true);
+```
 
 ## Build the src
     npm run build
