@@ -1,9 +1,9 @@
-import "babel-core/register";
-import "babel-polyfill";
+import 'babel-core/register';
+import 'babel-polyfill';
 import Scheduler from './index';
 
 function sleep(ms) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => resolve(), ms);
     });
 }

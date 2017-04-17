@@ -66,16 +66,18 @@ var LoopJob = function () {
     }, {
         key: 'match',
         value: function match(query) {
-            if ((typeof query === 'undefined' ? 'undefined' : _typeof(query)) == 'object' && _typeof(this.options.query) == 'object') {
-                for (var k in query) {
-                    if (query[k] !== this.options.query[k]) {
-                        return false;
+            var _this = this;
+
+            if ((typeof query === 'undefined' ? 'undefined' : _typeof(query)) === 'object' && _typeof(this.options.query) === 'object') {
+                var equal = true;
+                Object.keys(query).forEach(function (k) {
+                    if (query[k] !== _this.options.query[k]) {
+                        equal = false;
                     }
-                }
-                return true;
-            } else {
-                return query === this.options.query;
+                });
+                return equal;
             }
+            return query === this.options.query;
         }
     }]);
 

@@ -15,12 +15,12 @@ export default class Scheduler {
             throw new Error('addJob: the first parameter is not a function');
         }
         if (options.loop) {
-            let t = new LoopJob(callback, time, options);
+            const t = new LoopJob(callback, time, options);
             this.jobList.push(t);
             t.schedule();
         } else {
-            let t = new DelayJob(callback, time, options);
-            let length = this.jobList.push(t);
+            const t = new DelayJob(callback, time, options);
+            const length = this.jobList.push(t);
             t.schedule(() => this.jobList.splice(length - 1, 1));
         }
     }
@@ -34,23 +34,23 @@ export default class Scheduler {
     }
 
     cancelJob(options = {}) {
-        let taskIndices = [];
+        const taskIndices = [];
         this.jobList.forEach((t, i) => {
             if (t.match(options)) {
                 t.cancel();
                 taskIndices.push(i);
             }
         });
-        taskIndices.forEach((i) => this.jobList.splice(i, 1));
+        taskIndices.forEach(i => this.jobList.splice(i, 1));
     }
 
     cancelAll() {
-        this.jobList.forEach((t) => t.cancel());
+        this.jobList.forEach(t => t.cancel());
         this.jobList = [];
     }
 
     doNow(options, remove) {
-        let taskIndices = [];
+        const taskIndices = [];
         this.jobList.forEach((t, i) => {
             if (t.match(options)) {
                 t.run();
@@ -59,6 +59,6 @@ export default class Scheduler {
                 }
             }
         });
-        taskIndices.forEach((i) => this.jobList.splice(i, 1));
+        taskIndices.forEach(i => this.jobList.splice(i, 1));
     }
-};
+}

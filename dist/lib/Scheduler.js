@@ -120,4 +120,3 @@ var Scheduler = function () {
 }();
 
 exports.default = Scheduler;
-;

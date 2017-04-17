@@ -45,15 +45,15 @@ export default class LoopJob {
     }
 
     match(query) {
-        if (typeof query == 'object' && typeof this.options.query == 'object') {
-            for (let k in query) {
+        if (typeof query === 'object' && typeof this.options.query === 'object') {
+            let equal = true;
+            Object.keys(query).forEach((k) => {
                 if (query[k] !== this.options.query[k]) {
-                    return false;
+                    equal = false;
                 }
-            }
-            return true;
-        } else {
-            return query === this.options.query;
+            });
+            return equal;
         }
+        return query === this.options.query;
     }
 }
