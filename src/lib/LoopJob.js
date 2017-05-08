@@ -24,15 +24,15 @@ export default class LoopJob {
         }
     }
 
-    runExclusively() {
-        this.callback.apply(this.options.context, this.options.argArray);
+    async runExclusively() {
+        await this.callback(this.options.argArray);
         if (this.loop) {
             this.schedule();
         }
     }
 
-    run() {
-        this.callback.apply(this.options.context, this.options.argArray);
+    async run() {
+        await this.callback(this.options.argArray);
     }
 
     cancel() {

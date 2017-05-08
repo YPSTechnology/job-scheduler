@@ -9,11 +9,19 @@ function sleep(ms) {
 }
 
 Scheduler.scheduleJob(async () => {
-    console.log('job begin');
-    await sleep(5000);
-    console.log('job end');
-}, 3000);
+    console.log('job step 1');
+    await sleep(1000);
+    console.log('job step 2');
+    await sleep(1000);
+    console.log('job step 3');
+    await sleep(1000);
+    console.log('job step 4');
+    await sleep(1000);
+    console.log('job step 5');
+    await sleep(1000);
+    console.log('job step 6');
+}, 3000, { loop: true, exclusive: true });
 
-setTimeout(() => Scheduler.cancelAll(), 2000);
+setTimeout(() => Scheduler.cancelAll(), 20000);
 
 console.log('code end');

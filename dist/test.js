@@ -25,23 +25,43 @@ _index2.default.scheduleJob(_asyncToGenerator(regeneratorRuntime.mark(function _
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    console.log('job begin');
+                    console.log('job step 1');
                     _context.next = 3;
-                    return sleep(5000);
+                    return sleep(1000);
 
                 case 3:
-                    console.log('job end');
+                    console.log('job step 2');
+                    _context.next = 6;
+                    return sleep(1000);
 
-                case 4:
+                case 6:
+                    console.log('job step 3');
+                    _context.next = 9;
+                    return sleep(1000);
+
+                case 9:
+                    console.log('job step 4');
+                    _context.next = 12;
+                    return sleep(1000);
+
+                case 12:
+                    console.log('job step 5');
+                    _context.next = 15;
+                    return sleep(1000);
+
+                case 15:
+                    console.log('job step 6');
+
+                case 16:
                 case 'end':
                     return _context.stop();
             }
         }
     }, _callee, undefined);
-})), 3000);
+})), 3000, { loop: true, exclusive: true });
 
 setTimeout(function () {
     return _index2.default.cancelAll();
-}, 2000);
+}, 20000);
 
 console.log('code end');
