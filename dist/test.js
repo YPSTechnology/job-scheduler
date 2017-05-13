@@ -58,10 +58,10 @@ _index2.default.scheduleJob(_asyncToGenerator(regeneratorRuntime.mark(function _
             }
         }
     }, _callee, undefined);
-})), 3000, { loop: true, exclusive: true });
+})), 3000, { loop: true, exclusive: true, jobName: 'MyJob' });
 
 setTimeout(function () {
-    return _index2.default.cancelAll();
-}, 20000);
+    return _index2.default.cancelJob({ jobName: 'MyJob' });
+}, 10000);
 
 console.log('code end');
