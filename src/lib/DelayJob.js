@@ -29,16 +29,16 @@ export default class DelayJob {
         clearTimeout(this.timer);
     }
 
-    match(query) {
-        if (typeof query === 'object' && typeof this.options.query === 'object') {
+    match(options) {
+        if (typeof options === 'object' && typeof this.options === 'object') {
             let equal = true;
-            Object.keys(query).forEach((k) => {
-                if (query[k] !== this.options.query[k]) {
+            Object.keys(options).forEach((k) => {
+                if (options[k] !== this.options[k]) {
                     equal = false;
                 }
             });
             return equal;
         }
-        return query === this.options.query;
+        return options === this.options;
     }
 }

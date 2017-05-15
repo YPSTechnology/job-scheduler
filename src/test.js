@@ -20,8 +20,8 @@ Scheduler.scheduleJob(async () => {
     console.log('job step 5');
     await sleep(1000);
     console.log('job step 6');
-}, 3000, { loop: true, exclusive: true, jobName: 'MyJob' });
+}, 3000, { jobName: 'MyJob' });
 
-setTimeout(() => Scheduler.cancelJob({ jobName: 'MyJob' }), 10000);
+setTimeout(() => Scheduler.cancelJob({ jobName: 'MyJob' }), 2000);
 
 console.log('code end');

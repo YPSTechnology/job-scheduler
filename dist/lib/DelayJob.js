@@ -53,19 +53,19 @@ var DelayJob = function () {
         }
     }, {
         key: 'match',
-        value: function match(query) {
+        value: function match(options) {
             var _this3 = this;
 
-            if ((typeof query === 'undefined' ? 'undefined' : _typeof(query)) === 'object' && _typeof(this.options.query) === 'object') {
+            if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object' && _typeof(this.options) === 'object') {
                 var equal = true;
-                Object.keys(query).forEach(function (k) {
-                    if (query[k] !== _this3.options.query[k]) {
+                Object.keys(options).forEach(function (k) {
+                    if (options[k] !== _this3.options[k]) {
                         equal = false;
                     }
                 });
                 return equal;
             }
-            return query === this.options.query;
+            return options === this.options;
         }
     }]);
 
